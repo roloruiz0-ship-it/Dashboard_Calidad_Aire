@@ -94,6 +94,17 @@ def cargar_datos():
     return datos
 
 
+try:
+    df = cargar_datos()
+
+except FileNotFoundError:
+    st.error("No se encontró dataset.csv.")
+    st.stop()
+
+except Exception as error:
+    st.error(f"No fue posible cargar el dataset: {error}")
+    st.stop()
+
 
 # =========================================================
 # 3. FILTROS INTERACTIVOS
