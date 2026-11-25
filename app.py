@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import unicodedata
 from scipy.stats import chi2_contingency
 
 # =========================================================
