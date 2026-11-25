@@ -63,7 +63,18 @@ y otros indicadores ambientales por departamento, variable y periodo.
 def cargar_datos():
     datos = pd.read_csv("dataset.csv")
 
-    columnas_numericas = [
+# Limpiar nombres de departamentos
+if "Nombre del Departamento" in datos.columns:
+    datos["Nombre del Departamento"] = (
+        datos["Nombre del Departamento"]
+        .astype("string")
+        .str.strip()
+        .str.replace(r"\s+", " ", regex=True)
+        .str.title()
+    )
+
+
+       columnas_numericas = [
         "Promedio", "Suma", "No. de datos", "Mediana",
         "Percentil 98", "Máximo", "Mínimo"
     ]
@@ -112,6 +123,10 @@ faltantes = [col for col in columnas_requeridas if col not in df.columns]
 if faltantes:
     st.error(f"Faltan columnas necesarias en el CSV: {', '.join(faltantes)}")
     st.stop()
+# Limpiar nombres de departamentos
+df["Nombre del Departamento"] = (
+    df["Nombre del Departamento"]
+    .astype("string")
 
 
 # =========================================================
@@ -120,9 +135,22 @@ if faltantes:
 with st.sidebar:
     st.header("🔎 Filtros del análisis")
 
-    departamentos = sorted(
-        df["Nombre del Departamento"].dropna().unique()
-    )
+    # Normalizar nombres de departamentos
+df["Nombre del Departamento"] = (
+    df["Nombre del Departamento"]
+    .astype("string")
+    .str.strip()
+    .str.replace(r"\s+", " ", regex=True)
+    .str.normalize("NFKD")
+    .str.encode("ascii", errors="ignore")
+    .str.decode("utf-8")
+    .str.upper()
+)
+
+# Crear lista de departamentos sin duplicados
+departamentos = sorted(
+    df["Nombre del Departamento"].dropna().unique()
+)
 
     departamento_seleccionado = st.selectbox(
         "Departamento",
