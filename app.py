@@ -63,15 +63,32 @@ y otros indicadores ambientales por departamento, variable y periodo.
 def cargar_datos():
     datos = pd.read_csv("dataset.csv")
 
-    # Limpiar nombres de departamentos
-    if "Nombre del Departamento" in datos.columns:
-        datos["Nombre del Departamento"] = (
-            datos["Nombre del Departamento"]
-            .astype("string")
-            .str.strip()
-            .str.replace(r"\s+", " ", regex=True)
-            .str.title()
+   # Limpiar nombres de departamentos
+if "Nombre del Departamento" in datos.columns:
+
+    datos["Nombre del Departamento"] = (
+        datos["Nombre del Departamento"]
+        .astype("string")
+        .str.strip()
+        .str.replace("\u00a0", " ", regex=False)
+        .str.replace(r"\s+", " ", regex=True)
+        .str.lower()
+    )
+
+    # Unificar diferencias entre nombres con y sin tilde
+    def normalizar_departamento(nombre):
+        if pd.isna(nombre):
+            return nombre
+
+        return "".join(
+            caracter for caracter in unicodedata.normalize("NFD", nombre)
+            if unicodedata.category(caracter) != "Mn"
         )
+
+    datos["Nombre del Departamento"] = (
+        datos["Nombre del Departamento"]
+        .apply(normalizar_departamento)
+    )
 
     columnas_numericas = [
         "Promedio", "Suma", "No. de datos", "Mediana",
