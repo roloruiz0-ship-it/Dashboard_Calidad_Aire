@@ -6,89 +6,35 @@ from scipy.stats import chi2_contingency
 # =========================================================
 # 1. CONFIGURACIÓN GENERAL
 # =========================================================
-st.set_page_config(
-    page_title="Calidad del aire en Colombia",
-    page_icon="🌎",
-    layout="wide"
-)
-
-# Estilos visuales
-st.markdown("""
-<style>
-    .main {
-        background-color: #f8fafc;
-    }
-
-    h1 {
-        color: #17365D;
-        font-weight: 700;
-    }
-
-    h2, h3 {
-        color: #24527A;
-    }
-
-    div[data-testid="stMetric"] {
-        background-color: #ffffff;
-        border: 1px solid #dce5ef;
-        padding: 16px;
-        border-radius: 10px;
-    }
-
-    div[data-testid="stMetricLabel"] {
-        color: #526579;
-    }
-
-    .nota {
-        background-color: #eaf2f8;
-        padding: 12px;
-        border-radius: 8px;
-        color: #24445f;
-    }
-</style>
-""", unsafe_allow_html=True)
-
-st.title("🌎 Análisis de la calidad del aire en Colombia")
-st.subheader("Exploración de datos de estaciones de monitoreo — Promedio anual")
-
-st.markdown("""
-Dashboard interactivo para explorar los registros de contaminantes
-y otros indicadores ambientales por departamento, variable y periodo.
-""")
-
-# =========================================================
-# 2. CARGA Y PREPARACIÓN DE DATOS
-# =========================================================
 @st.cache_data
 def cargar_datos():
     datos = pd.read_csv("dataset.csv")
 
-   # Limpiar nombres de departamentos
-if "Nombre del Departamento" in datos.columns:
-
-    datos["Nombre del Departamento"] = (
-        datos["Nombre del Departamento"]
-        .astype("string")
-        .str.strip()
-        .str.replace("\u00a0", " ", regex=False)
-        .str.replace(r"\s+", " ", regex=True)
-        .str.lower()
-    )
-
-    # Unificar diferencias entre nombres con y sin tilde
-    def normalizar_departamento(nombre):
-        if pd.isna(nombre):
-            return nombre
-
-        return "".join(
-            caracter for caracter in unicodedata.normalize("NFD", nombre)
-            if unicodedata.category(caracter) != "Mn"
+    # Limpiar nombres de departamentos
+    if "Nombre del Departamento" in datos.columns:
+        datos["Nombre del Departamento"] = (
+            datos["Nombre del Departamento"]
+            .astype("string")
+            .str.strip()
+            .str.replace("\u00a0", " ", regex=False)
+            .str.replace(r"\s+", " ", regex=True)
+            .str.lower()
         )
 
-    datos["Nombre del Departamento"] = (
-        datos["Nombre del Departamento"]
-        .apply(normalizar_departamento)
-    )
+        def normalizar_departamento(nombre):
+            if pd.isna(nombre):
+                return nombre
+
+            return "".join(
+                caracter
+                for caracter in unicodedata.normalize("NFD", nombre)
+                if unicodedata.category(caracter) != "Mn"
+            )
+
+        datos["Nombre del Departamento"] = (
+            datos["Nombre del Departamento"]
+            .apply(normalizar_departamento)
+        )
 
     columnas_numericas = [
         "Promedio", "Suma", "No. de datos", "Mediana",
