@@ -136,6 +136,24 @@ with st.sidebar:
         "Año",
         ["Todos"] + anios
     )
+
+# Aplicar filtros seleccionados
+df_filtrado = df.copy()
+
+if departamento_seleccionado != "Todos":
+    df_filtrado = df_filtrado[
+        df_filtrado["Nombre del Departamento"] == departamento_seleccionado
+    ]
+
+if variable_seleccionada != "Todas":
+    df_filtrado = df_filtrado[
+        df_filtrado["Variable"] == variable_seleccionada
+    ]
+
+if anio_seleccionado != "Todos":
+    df_filtrado = df_filtrado[
+        df_filtrado["Año"] == anio_seleccionado
+    ]
 # =========================================================
 # 4. EXPLORACIÓN DE DATOS Y MÉTRICAS
 # =========================================================
