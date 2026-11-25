@@ -101,22 +101,9 @@ def cargar_datos():
 with st.sidebar:
     st.header("🔎 Filtros del análisis")
 
-    # Normalizar nombres de departamentos
-df["Nombre del Departamento"] = (
-    df["Nombre del Departamento"]
-    .astype("string")
-    .str.strip()
-    .str.replace(r"\s+", " ", regex=True)
-    .str.normalize("NFKD")
-    .str.encode("ascii", errors="ignore")
-    .str.decode("utf-8")
-    .str.upper()
-)
-
-# Crear lista de departamentos sin duplicados
-departamentos = sorted(
-    df["Nombre del Departamento"].dropna().unique()
-)
+    departamentos = sorted(
+        df["Nombre del Departamento"].dropna().unique()
+    )
 
     departamento_seleccionado = st.selectbox(
         "Departamento",
@@ -138,63 +125,6 @@ departamentos = sorted(
         "Año",
         ["Todos"] + anios
     )
-
-    valores_promedio = df["Promedio"].dropna()
-
-    if valores_promedio.empty:
-        st.error("No hay valores numéricos disponibles en la columna Promedio.")
-        st.stop()
-
-    minimo = float(valores_promedio.min())
-    maximo = float(valores_promedio.max())
-
-    if minimo == maximo:
-        rango_promedio = (minimo, maximo)
-        st.info(f"El promedio disponible es {minimo:.2f}.")
-    else:
-        rango_promedio = st.slider(
-            "Rango del promedio",
-            min_value=minimo,
-            max_value=maximo,
-            value=(minimo, maximo),
-            step=max((maximo - minimo) / 500, 0.01),
-            help="Selecciona el intervalo de valores promedio que deseas analizar."
-        )
-
-    st.divider()
-
-    st.caption(
-        "Los indicadores, la tabla y los gráficos de exploración "
-        "se actualizan según los filtros seleccionados."
-    )
-
-
-# Aplicar filtros
-df_filtrado = df.copy()
-
-if departamento_seleccionado != "Todos":
-    df_filtrado = df_filtrado[
-        df_filtrado["Nombre del Departamento"] == departamento_seleccionado
-    ]
-
-if variable_seleccionada != "Todas":
-    df_filtrado = df_filtrado[
-        df_filtrado["Variable"] == variable_seleccionada
-    ]
-
-if anio_seleccionado != "Todos":
-    df_filtrado = df_filtrado[
-        df_filtrado["Año"] == anio_seleccionado
-    ]
-
-df_filtrado = df_filtrado[
-    df_filtrado["Promedio"].between(
-        rango_promedio[0],
-        rango_promedio[1]
-    )
-]
-
-
 # =========================================================
 # 4. EXPLORACIÓN DE DATOS Y MÉTRICAS
 # =========================================================
@@ -247,8 +177,6 @@ st.download_button(
     file_name="datos_calidad_aire_filtrados.csv",
     mime="text/csv"
 )
-
-
 # =========================================================
 # 5. VISUALIZACIONES DINÁMICAS
 # =========================================================
