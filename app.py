@@ -63,18 +63,17 @@ y otros indicadores ambientales por departamento, variable y periodo.
 def cargar_datos():
     datos = pd.read_csv("dataset.csv")
 
-# Limpiar nombres de departamentos
-if "Nombre del Departamento" in datos.columns:
-    datos["Nombre del Departamento"] = (
-        datos["Nombre del Departamento"]
-        .astype("string")
-        .str.strip()
-        .str.replace(r"\s+", " ", regex=True)
-        .str.title()
-    )
+    # Limpiar nombres de departamentos
+    if "Nombre del Departamento" in datos.columns:
+        datos["Nombre del Departamento"] = (
+            datos["Nombre del Departamento"]
+            .astype("string")
+            .str.strip()
+            .str.replace(r"\s+", " ", regex=True)
+            .str.title()
+        )
 
-
-       columnas_numericas = [
+    columnas_numericas = [
         "Promedio", "Suma", "No. de datos", "Mediana",
         "Percentil 98", "Máximo", "Mínimo"
     ]
@@ -94,39 +93,6 @@ if "Nombre del Departamento" in datos.columns:
 
     return datos
 
-
-try:
-    df = cargar_datos()
-
-except FileNotFoundError:
-    st.error(
-        "No se encontró dataset.csv. Verifica que esté guardado "
-        "en la misma carpeta que app.py."
-    )
-    st.stop()
-
-except Exception as error:
-    st.error(f"No fue posible cargar el dataset: {error}")
-    st.stop()
-
-
-columnas_requeridas = [
-    "Nombre del Departamento",
-    "Variable",
-    "Promedio",
-    "Año",
-    "Tipo de Estación"
-]
-
-faltantes = [col for col in columnas_requeridas if col not in df.columns]
-
-if faltantes:
-    st.error(f"Faltan columnas necesarias en el CSV: {', '.join(faltantes)}")
-    st.stop()
-# Limpiar nombres de departamentos
-df["Nombre del Departamento"] = (
-    df["Nombre del Departamento"]
-    .astype("string")
 
 
 # =========================================================
