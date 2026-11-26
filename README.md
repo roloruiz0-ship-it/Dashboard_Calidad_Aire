@@ -34,7 +34,7 @@
 
 # 
 
-# 3\. Captura de pantalla del dashboard
+# \## 3. Captura de pantalla del dashboard
 
 # 
 
@@ -42,9 +42,7 @@
 
 # 
 
-# (https://github.com/roloruiz0-ship-it/Dashboard\_Calidad\_Aire/blob/main/capturas/dashboard.png?raw=true)
-
-
+# !\[Dashboard de calidad del aire](https://github.com/roloruiz0-ship-it/Dashboard\_Calidad\_Aire/blob/main/capturas/dashboard.png?raw=true)
 
 # 4\. Principales hallazgos del análisis exploratorio
 
