@@ -38,7 +38,7 @@
 
 # 
 
-# !\[Dashboard\_Calidad\_Aire](capturas/dashboard.png)
+![Dashboard](capturas/dashboard.png)
 
 # 
 
