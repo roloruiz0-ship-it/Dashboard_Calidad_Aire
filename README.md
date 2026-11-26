@@ -38,11 +38,9 @@
 
 # 
 
-# A continuación, se presenta una evidencia visual de la aplicación en funcionamiento.
+# !\[Dashboard](capturas/dashboard.png)
 
 # 
-
-# !\[Dashboard de calidad del aire](https://github.com/roloruiz0-ship-it/Dashboard\_Calidad\_Aire/blob/main/capturas/dashboard.png?raw=true)
 
 # 4\. Principales hallazgos del análisis exploratorio
 
