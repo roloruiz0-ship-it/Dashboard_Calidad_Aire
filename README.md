@@ -42,7 +42,7 @@
 
 # 
 
-# 
+# dashboard.png
 
 # 
 
@@ -188,11 +188,11 @@
 
 # 
 
-# Estudiante: \[Nombre del estudiante]
+# Estudiante: Edisson Rolando Ruiz García
 
 # 
 
-# Curso: \[Nombre del curso]
+# Curso: Programación para el análisis de datos
 
 # 
 
