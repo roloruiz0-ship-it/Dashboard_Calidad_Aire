@@ -42,9 +42,9 @@
 
 # 
 
-# dashboard.png
+# !\[Dashboard de calidad del aire](./capturas/dashboard.png)
 
-# 
+
 
 # 4\. Principales hallazgos del análisis exploratorio
 
