@@ -1,84 +1,212 @@
 # Análisis de la calidad del aire en Colombia
 
-## Descripción del proyecto
+# 
 
-Este proyecto presenta un dashboard interactivo desarrollado con Streamlit para explorar el conjunto de datos **Calidad del Aire en Colombia (Promedio Anual)**. La aplicación permite consultar los registros por departamento, variable ambiental y rango del promedio, además de observar métricas descriptivas y gráficos que facilitan la comprensión de los datos.
+# Dashboard interactivo para la exploración de los contaminantes PM10 y PM2.5
 
-El dataset contiene información de estaciones de monitoreo, variables ambientales, años de medición, promedios y ubicación geográfica. Se seleccionó porque permite comparar registros entre departamentos y observar cómo se distribuyen las mediciones ambientales en el país.
+# 
 
-## Contenido del repositorio
+# 1\. Descripción del proyecto
 
-- `app.py`: código principal de la aplicación Streamlit.
-- `dataset.csv`: conjunto de datos utilizado.
-- `requirements.txt`: librerías necesarias para ejecutar la aplicación.
-- `README.md`: documentación del proyecto.
-- `capturas/`: carpeta para guardar la captura del dashboard funcionando.
+# 
 
-## Hallazgos principales
+# Este proyecto presenta un dashboard interactivo desarrollado con Python y Streamlit para explorar y analizar el conjunto de datos Calidad del Aire en Colombia (Promedio Anual). El análisis se enfoca en los contaminantes PM10 y PM2.5, con el propósito de identificar diferencias en sus valores promedio entre los departamentos y observar su comportamiento a lo largo de los años.
 
-- El archivo contiene registros de diferentes variables ambientales y estaciones de monitoreo de Colombia.
-- La aplicación permite comparar los promedios registrados por departamento y año.
-- Los registros incluyen estaciones clasificadas como fijas e indicativas.
-- La prueba Chi-cuadrado de independencia entre `Variable` y `Tipo de Estación` arroja un estadístico de 1281.6951 y un valor p aproximado de 2.95 × 10⁻²⁶⁰.
-- El resultado de la prueba indica evidencia de asociación entre las dos variables categóricas; no demuestra causalidad.
+# 
 
-## Instalación y ejecución local
+# El conjunto de datos contiene información de estaciones de monitoreo, variables ambientales, años de medición, valores promedio y ubicación geográfica. Se seleccionó porque permite comparar los registros de calidad del aire entre departamentos y analizar el comportamiento de los contaminantes en Colombia.
 
-1. Instalar Python (versión 3.9 o superior recomendada).
-2. Descargar o clonar este repositorio.
-3. Abrir una terminal en la carpeta del proyecto.
-4. (Opcional, recomendado) Crear un entorno virtual:
+# 
 
-   ```bash
-   python -m venv venv
-   ```
+# La aplicación permite consultar la información mediante filtros por departamento, contaminante, año y rango de valores promedio. También presenta indicadores, gráficos y resultados de un análisis estadístico para facilitar la interpretación de los datos.
 
-5. Activar el entorno virtual en Windows:
+# 
 
-   ```bash
-   venv\Scripts\activate
-   ```
+# 2\. Dashboard publicado
 
-6. Instalar las dependencias:
+# 
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+# El proyecto se encuentra disponible en Streamlit Community Cloud:
 
-7. Ejecutar la aplicación:
+# 
 
-   ```bash
-   streamlit run app.py
-   ```
+# Enlace: https://dashboardcalidadaire-awiu3u6dpe2uyguvwsegd5.streamlit.app/
 
-8. Abrir en el navegador la dirección que muestra Streamlit, normalmente `http://localhost:8501`.
+# 
 
-## Publicación en Streamlit Community Cloud
+# 3\. Captura de pantalla del dashboard
 
-1. Subir `app.py`, `dataset.csv`, `requirements.txt` y `README.md` a un repositorio público de GitHub.
-2. Ingresar a https://share.streamlit.io/ e iniciar sesión con GitHub.
-3. Seleccionar **New app** y elegir el repositorio.
-4. Seleccionar la rama y el archivo principal `app.py`.
-5. Presionar **Deploy**.
-6. Cuando termine la publicación, copiar la URL pública de la aplicación y pegarla aquí:
+# 
 
-**Dashboard publicado:** [Agregar aquí la URL de Streamlit]
+# A continuación, se presenta una evidencia visual de la aplicación en funcionamiento.
 
-## Evidencia
+# 
 
-Guardar al menos una captura de pantalla del dashboard funcionando en la carpeta `capturas/` y agregarla al repositorio. Después, insertar aquí la imagen, por ejemplo:
+# 
 
-```markdown
-![Dashboard de calidad del aire](capturas/dashboard.png)
-```
+# 
 
-## Información académica
+# 4\. Principales hallazgos del análisis exploratorio
 
-- **Estudiante:** [Escribir nombre del estudiante]
-- **Curso:** [Escribir nombre del curso]
-- **Universidad:** Universidad Nacional Abierta y a Distancia (UNAD)
-- **Fecha:** [Escribir fecha de entrega]
+# 
 
-## Fuente de datos
+# Comparación por departamentos: Arauca presentó los mayores valores promedio tanto de PM10 como de PM2.5 entre los departamentos analizados.
 
-Calidad del Aire en Colombia (Promedio Anual), archivo suministrado para el desarrollo de la actividad académica.
+# 
+
+# Comportamiento de PM10: también se destacaron Norte de Santander, Cauca, Valle del Cauca y Bogotá.
+
+# 
+
+# Comportamiento de PM2.5: después de Arauca, sobresalieron Casanare, Chocó, Norte de Santander y Antioquia.
+
+# 
+
+# Comportamiento temporal: los valores promedio más altos se observaron entre 2011 y 2016. En los años posteriores se identificó una tendencia descendente.
+
+# 
+
+# Análisis estadístico: la prueba chi-cuadrado, aplicada a los registros de PM10 y PM2.5 con información disponible sobre el tipo de estación, obtuvo un estadístico de 6,3392 y un valor p de 0,01181. Esto evidencia una asociación estadísticamente significativa entre el contaminante y el tipo de estación, sin demostrar causalidad.
+
+# 
+
+# 5\. Tecnologías utilizadas
+
+# 
+
+# Python
+
+# 
+
+# Streamlit
+
+# 
+
+# Pandas
+
+# 
+
+# Matplotlib
+
+# 
+
+# SciPy
+
+# 
+
+# GitHub
+
+# 
+
+# Streamlit Community Cloud
+
+# 
+
+# 6\. Estructura del repositorio
+
+# 
+
+# Dashboard\_Calidad\_Aire/
+
+# │
+
+# ├── app.py
+
+# ├── dataset.csv
+
+# ├── requirements.txt
+
+# ├── README.md
+
+# └── capturas/
+
+# &#x20;   └── dashboard.png
+
+# 
+
+# 7\. Instalación y ejecución local
+
+# 
+
+# Para ejecutar el proyecto en un equipo local, se deben seguir estos pasos:
+
+# 
+
+# Paso 1. Instalar Python 3.9 o una versión superior.
+
+# 
+
+# Paso 2. Descargar o clonar el repositorio de GitHub.
+
+# 
+
+# Paso 3. Abrir una terminal en la carpeta del proyecto.
+
+# 
+
+# Paso 4. Crear un entorno virtual (opcional, pero recomendado):
+
+# 
+
+# python -m venv venv
+
+# 
+
+# Paso 5. Activar el entorno virtual en Windows:
+
+# 
+
+# venv\\Scripts\\activate
+
+# 
+
+# Paso 6. Instalar las dependencias:
+
+# 
+
+# pip install -r requirements.txt
+
+# 
+
+# Paso 7. Ejecutar la aplicación:
+
+# 
+
+# python -m streamlit run app.py
+
+# 
+
+# Paso 8. Abrir en el navegador la dirección local que proporciona Streamlit, normalmente:
+
+# 
+
+# http://localhost:8501
+
+# 
+
+# 8\. Información académica
+
+# 
+
+# Estudiante: \[Nombre del estudiante]
+
+# 
+
+# Curso: \[Nombre del curso]
+
+# 
+
+# Universidad: Universidad Nacional Abierta y a Distancia (UNAD)
+
+# 
+
+# Fecha: 26 de noviembre de 2026
+
+# 
+
+# 9\. Fuente de datos
+
+# 
+
+# Conjunto de datos Calidad del Aire en Colombia (Promedio Anual), suministrado para el desarrollo de la actividad académica.
+
